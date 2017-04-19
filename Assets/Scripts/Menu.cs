@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class MainMenuBehaviour : MonoBehaviour {
-    public void TriggerMenuBehaviour (int i)
+public class Menu : MonoBehaviour {
+    public void MenuBehaviour (int i)
     {
         switch (i)
         {
