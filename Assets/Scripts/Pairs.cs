@@ -31,10 +31,10 @@ public class Pairs : MonoBehaviour {
     void SetUpDeck()
     {
         
-        for(int i = 0; i <deck.Length; i++)//resets cards, had to be added due to issue with infinite looping While
+       /* for(int i = 0; i <deck.Length; i++)//resets cards, had to be added due to issue with infinite looping While
         {
             deck[i].GetComponent<Card>().SetUp = false;
-        }
+        }*/
 
         for (int ix = 0; ix < 2; ix++) //sets up cards twice, ensuring there is a pair for each card
         {
@@ -46,6 +46,7 @@ public class Pairs : MonoBehaviour {
                 {
                    val = Random.Range(0, deck.Length);
                    test = !(deck[val].GetComponent<Card>().SetUp);//finds cards that are not set up
+
                 }//while
 
                 //sets up cards
@@ -100,7 +101,7 @@ public class Pairs : MonoBehaviour {
 
     void CompareCards(List<int> crd)
     {
-        Card.NO_TURN = true; //stops cards turning
+        //Card.NO_TURN = true; //stops cards turning //had to remove becuase of error
 
         int x = 0;
 

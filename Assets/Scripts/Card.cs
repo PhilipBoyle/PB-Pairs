@@ -17,19 +17,19 @@ public class Card : MonoBehaviour {
     private Sprite cBack; //card back (Green square)
     private Sprite cFace; //card face (1-10 JQKA)
 
-    private GameObject pairsManager;
+    private GameObject manager;
 
-    void Begin()
+    void Start()
     {
         cardState = 1; //cards face down
-        pairsManager = GameObject.FindGameObjectWithTag("PairsManager"); //slightly inificiant method, works with small games
+        manager = GameObject.FindGameObjectWithTag("PM"); //slightly inificiant method, works with small games
 
     }
 
     public void SetUpArt()
     {
-        cBack = pairsManager.GetComponent<Pairs>().GetBack();//<--error
-        cFace = pairsManager.GetComponent<Pairs>().GetFace(cardNumber);
+        cBack = manager.GetComponent<Pairs>().GetBack(); //<--error
+        cFace = manager.GetComponent<Pairs>().GetFace(cardNumber);
 
         turnCard();//turns the card
     }
