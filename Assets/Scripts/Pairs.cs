@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Pairs : MonoBehaviour {
 
-    public Sprite[] face; //array of card faces
-    public Sprite back;
+    public Sprite[] cardFace; //array of card faces
+    public Sprite cardBack;
     public GameObject[] deck; //array of deck
     public Text pairsCount;
 
@@ -30,28 +30,36 @@ public class Pairs : MonoBehaviour {
 
     void SetUpDeck()
     {
-        for (int i = 0; i < 2; i++) //sets up cards twice, ensuring there is a pair for each card
+        
+        for(int i = 0; i <deck.Length; i++)//resets cards, had to be added due to issue with infinite looping While
         {
-            for(int j = 1; j < 14; j++)//sets up card value (1-10 JQKA)
-            {
-                bool check = false;
-                int val = 0;
-                while(!check)
-                {
-                    val = Random.Range(0, deck.Length);
-                    check = !(deck[val].GetComponent<Card>().SetUp);
+            deck[i].GetComponent<Card>().SetUp = false;
+        }
 
+        for (int ix = 0; ix < 2; ix++) //sets up cards twice, ensuring there is a pair for each card
+        {
+            for(int i = 1; i < 14; i++)//sets up card value (2-10 JQKA)
+            {
+                bool test = false;
+                int val = 0;
+                while (!test)
+                {
+                   val = Random.Range(0, deck.Length);
+                   test = !(deck[val].GetComponent<Card>().SetUp);//finds cards that are not set up
                 }//while
 
-                deck[val].GetComponent<Card>().Number = j;
+                //sets up cards
+                
+                deck[val].GetComponent<Card>().Number = i;
                 deck[val].GetComponent<Card>().SetUp = true;
 
             }//nested for
+
         }//for
 
         foreach (GameObject crd in deck)
         {
-            crd.GetComponent<Card>().setUpArt();
+            crd.GetComponent<Card>().SetUpArt();
         }
 
         if (!deckSetUp)
@@ -60,25 +68,26 @@ public class Pairs : MonoBehaviour {
         }
     }//SetUpDeck
 
-    public Sprite getBack()
+    public Sprite GetBack()
     {
-        return back;
+        return cardBack;
     }//getBack
 
-    public Sprite getFace(int j)
+    public Sprite GetFace(int i)
     {
-        return face[j - 1];
+        return cardFace[i - 1];
+
     }//getFace
 
     void CheckDeck()
     {
         List < int > crd = new List<int>();
 
-        for(int j = 0; j < deck.Length; j++)
+        for(int i = 0; i < deck.Length; i++)
         {
-            if(deck[j].GetComponent<Card>().State == 1)
+            if(deck[i].GetComponent<Card>().State == 1)
             {
-                crd.Add(j);
+                crd.Add(i);
             }
 
         }
@@ -93,11 +102,11 @@ public class Pairs : MonoBehaviour {
     {
         Card.NO_TURN = true; //stops cards turning
 
-        int c = 0;
+        int x = 0;
 
         if(deck[crd[0]].GetComponent<Card>().Number == deck[crd[1]].GetComponent<Card>().Number)
         {
-            c = 2;
+            x = 2;
             pairsLeft--;
             pairsCount.text = "PAIRS REMAINING: " + pairsLeft; //updates game text
 
@@ -108,9 +117,9 @@ public class Pairs : MonoBehaviour {
 
         }
 
-        for(int j = 0; j <crd.Count; j++)
+        for(int j = 0; j < crd.Count; j++)
         {
-            deck[crd[j]].GetComponent<Card>().State = c;
+            deck[crd[j]].GetComponent<Card>().State = x;
             deck[crd[j]].GetComponent<Card>().PairCheck();
 
         }

@@ -12,37 +12,45 @@ public class Card : MonoBehaviour {
     [SerializeField]
     private int cardNumber; //Card value (1-13)
     [SerializeField]
-    private bool SetUp = false;
+    private bool _setUp = false;
 
-    private Sprite back; //card back (Green square)
-    private Sprite face; //card face (1-10 JQKA)
+    private Sprite cBack; //card back (Green square)
+    private Sprite cFace; //card face (1-10 JQKA)
 
     private GameObject pairsManager;
 
     void Begin()
     {
-        cardState = 0; //cards face down
-        pairsManager = GameObject.FindGameObjectWithTag("Pairs"); //slightly inificiant method, works with small games
+        cardState = 1; //cards face down
+        pairsManager = GameObject.FindGameObjectWithTag("PairsManager"); //slightly inificiant method, works with small games
 
     }
 
-    public void setUpArt()
+    public void SetUpArt()
     {
-        back = pairsManager.GetComponent<Pairs>().getBack();
-        face = pairsManager.GetComponent<Pairs>().getFace(cardNumber);
+        cBack = pairsManager.GetComponent<Pairs>().GetBack();//<--error
+        cFace = pairsManager.GetComponent<Pairs>().GetFace(cardNumber);
 
         turnCard();//turns the card
     }
 
-    void turnCard() //handles turning of card
+    public void turnCard() //handles turning of card
     {
+        if (cardState == 0)
+        {
+            cardState = 1;
+        }
+        else if(cardState == 1)
+        {
+            cardState = 0;
+        }
         if (cardState == 0 && !NO_TURN)
         {
-            GetComponent<Image>().sprite = back; // shows card back
+            GetComponent<Image>().sprite = cBack; // shows card back
         }
         else if (cardState == 1 && !NO_TURN)
         {
-            GetComponent<Image>().sprite = face; // shows card front
+            GetComponent<Image>().sprite = cFace; // shows card front
         }
     }
 
@@ -62,8 +70,8 @@ public class Card : MonoBehaviour {
 
     public bool SetUp
     {
-        get { return SetUp; }
-        set { SetUp = value; }
+        get { return _setUp; }
+        set { _setUp = value; }
     }
 
     
@@ -77,11 +85,11 @@ public class Card : MonoBehaviour {
         yield return new WaitForSeconds(1); //pauses for 1 second to show card to user
         if (cardState == 0)
         {
-            GetComponent<Image>().sprite = back;
+            GetComponent<Image>().sprite = cBack;
         }
         else if (cardState == 1)
         {
-            GetComponent<Image>().sprite = face;
+            GetComponent<Image>().sprite = cFace;
         }
     }
 }
