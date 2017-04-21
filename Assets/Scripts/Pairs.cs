@@ -113,7 +113,7 @@ public class Pairs : MonoBehaviour {
 
             if(pairsLeft == 0) // goes to home screen when game has been won
             {
-                SceneManager.LoadScene("Home");
+                SceneManager.LoadScene("Win");
             }
 
         }
