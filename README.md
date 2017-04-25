@@ -25,3 +25,5 @@ The project was written in C# and built using Unity3D 5.6.
 15. When the counter reaches 0 you will be presented a Win Screen.  
 16. You can iether quit or play again from the win screen.  
 17. Have fun!!  
+
+You can find my Design Doc in the "Design Document.docx" file.
