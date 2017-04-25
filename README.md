@@ -8,7 +8,7 @@ The project was written in C# and built using Unity3D 5.6.
 [Video Demonstration](https://www.youtube.com/watch?v=JYtymT9SzI4 "Video Demonstration")
 
 
-
+USER GUIDE: 
 1. To run the game simply download and extract the project files and run the "PB Pairs.exe" file.    
 2. You will be given a menu to select your desired resolution.  
 3. Select your resolution and click Play.   
