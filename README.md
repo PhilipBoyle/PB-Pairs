@@ -27,4 +27,9 @@ USER GUIDE:
 16. You can iether quit or play again from the win screen.  
 17. Have fun!!  
 
-You can find my Design Doc in the "Design Document.docx" file.
+You can find my Design Doc in the "Design Document.docx" file. 
+
+References:
+1. [Thanks to user CNuts on StackOverflow for answering some questions I had](http://stackoverflow.com/questions/43526749/unity-crashing-on-play-most-likely-infinite-while-loop-but-cannot-locate-issue)   
+2. [All game art used was obtained from OpenGameArt.org](https://opengameart.org/content/boardgame-pack)    
+3. Thanks to my mother for teaching me how to play the game.   
